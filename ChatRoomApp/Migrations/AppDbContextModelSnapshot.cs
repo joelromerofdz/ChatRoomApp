@@ -258,9 +258,6 @@ namespace ChatRoomApp.Migrations
                 {
                     b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
 
-                    b.Property<int>("MessageId")
-                        .HasColumnType("int");
-
                     b.HasDiscriminator().HasValue("User");
                 });
 

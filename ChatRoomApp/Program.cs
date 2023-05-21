@@ -1,4 +1,7 @@
 using ChatRoomApp.Data;
+using ChatRoomApp.Helpers.Interfaces;
+using ChatRoomApp.Helpers;
+using ChatRoomApp.Models.Entities;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -8,6 +11,12 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddDbContext<AppDbContext>(option =>
     option.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnectionString")));
+
+builder.Services.AddDefaultIdentity<User>()
+    .AddEntityFrameworkStores<AppDbContext>();
+
+builder.Services.AddScoped<IUserHelper, UserHelper>();
+builder.Services.AddScoped<IMessageHelper, MessageHelper>();
 
 var app = builder.Build();
 
