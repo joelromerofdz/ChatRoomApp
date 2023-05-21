@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ChatRoomApp.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20230521063304_InitialMigrationEntities")]
-    partial class InitialMigrationEntities
+    [Migration("20230521174723_initMigration")]
+    partial class initMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -260,9 +260,6 @@ namespace ChatRoomApp.Migrations
             modelBuilder.Entity("ChatRoomApp.Models.Entities.User", b =>
                 {
                     b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
-
-                    b.Property<int>("MessageId")
-                        .HasColumnType("int");
 
                     b.HasDiscriminator().HasValue("User");
                 });

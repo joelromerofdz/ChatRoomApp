@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ChatRoomApp.Data
 {
-    public class AppDbContext : IdentityDbContext
+    public class AppDbContext : IdentityDbContext<User>
     {
         public AppDbContext(DbContextOptions options) : base(options)
         {
@@ -13,9 +13,9 @@ namespace ChatRoomApp.Data
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<User>()
-                .HasMany(u => u.Messages)
-                .WithOne(m => m.Sender)
+            modelBuilder.Entity<Message>()
+                .HasOne<User>(m => m.Sender)
+                .WithMany(u => u.Messages)
                 .HasForeignKey(m => m.UserId);
         }
 
