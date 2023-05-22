@@ -12,11 +12,20 @@ namespace ChatRoomApp.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-
-            modelBuilder.Entity<Message>()
-                .HasOne<User>(m => m.Sender)
+            modelBuilder.Entity<Message>(entity =>
+            {
+                entity.HasOne<User>(m => m.Sender)
                 .WithMany(u => u.Messages)
-                .HasForeignKey(m => m.UserId);
+                .HasForeignKey(m => m.UserId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+                entity.HasOne<User>(m => m.Receiver)
+                .WithMany(u => u.MessagesReceiver)
+                .HasForeignKey(m => m.ReceiverId)
+                .OnDelete(DeleteBehavior.Restrict);
+            });
+            //modelBuilder.Entity<Message>()
+            //               .Ignore(m => m.Receiver);
         }
 
         public DbSet<Message> Messages { get; set; }
