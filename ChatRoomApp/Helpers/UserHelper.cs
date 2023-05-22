@@ -1,5 +1,4 @@
-﻿using ChatRoomApp.Controllers;
-using ChatRoomApp.Data;
+﻿using ChatRoomApp.Data;
 using ChatRoomApp.Helpers.Interfaces;
 using ChatRoomApp.Models.Entities;
 using Microsoft.AspNetCore.Identity;

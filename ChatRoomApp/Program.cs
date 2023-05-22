@@ -3,6 +3,7 @@ using ChatRoomApp.Helpers.Interfaces;
 using ChatRoomApp.Helpers;
 using ChatRoomApp.Models.Entities;
 using Microsoft.EntityFrameworkCore;
+using ChatRoomApp.Hubs;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,6 +19,7 @@ builder.Services.AddDefaultIdentity<User>()
 builder.Services.AddScoped<IUserHelper, UserHelper>();
 builder.Services.AddScoped<IMessageHelper, MessageHelper>();
 
+builder.Services.AddSignalR();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -38,5 +40,7 @@ app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+app.MapHub<ChatHub>("/chatHub");
 
 app.Run();
