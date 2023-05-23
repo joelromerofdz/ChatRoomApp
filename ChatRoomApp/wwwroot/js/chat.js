@@ -32,6 +32,7 @@ connection.on("ReceiveMessage", function (user, message) {
     const messagesContainer = document.getElementById('box-chat');
     messagesContainer.appendChild(div);
     messagesMainContainer.scrollTop += 500;
+    document.getElementById("messageInput").value = "";
 });
 
 connection.start().then(function () {
@@ -43,6 +44,11 @@ connection.start().then(function () {
 document.getElementById("sendButton").addEventListener("click", function (event) {
     var user = document.getElementById("userName").value;
     var message = document.getElementById("messageInput").value;
+
+    if (message === null || message.trim() === "") {
+        alert("You have to add a message in the textbox.");
+        return false;
+    }
 
     connection.invoke("SendMessage", user, message).catch(function (err) {
         return console.error(err.toString());

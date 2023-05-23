@@ -9,6 +9,7 @@ namespace ChatRoomApp.Data
         public AppDbContext(DbContextOptions options) : base(options)
         {
         }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -25,8 +26,6 @@ namespace ChatRoomApp.Data
                 .IsRequired(false)
                 .OnDelete(DeleteBehavior.Restrict);
             });
-            //modelBuilder.Entity<Message>()
-            //               .Ignore(m => m.Receiver);
         }
 
         public DbSet<Message> Messages { get; set; }
