@@ -12,7 +12,7 @@ namespace ChatRoomApp.Helpers
         public readonly AppDbContext _dbcontext;
         public readonly IUserHelper _userHelper;
 
-        public MessageHelper(AppDbContext dbcontext, 
+        public MessageHelper(AppDbContext dbcontext,
             IUserHelper userHelper)
         {
             _dbcontext = dbcontext;
@@ -37,7 +37,9 @@ namespace ChatRoomApp.Helpers
             var chatRoomViewModel = new ChatRoomViewModel
             {
                 Messages = messages,
-                Users = users
+                Users = users,
+                UserName = _userHelper.GetUserId().UserName,
+                UserId = _userHelper.GetUserId().UserId 
             };
 
             return chatRoomViewModel;
@@ -50,7 +52,7 @@ namespace ChatRoomApp.Helpers
                 var message = new Message()
                 {
                     UserId = messagePost.UserId,
-                    ReceiverId = messagePost.ReceiverId,
+                    //ReceiverId = messagePost.ReceiverId,
                     Content = messagePost.Content
                 };
 

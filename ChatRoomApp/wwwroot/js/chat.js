@@ -9,16 +9,15 @@ var connection = new signalR.HubConnectionBuilder().withUrl("/chatHub").build();
 document.getElementById("sendButton").disabled = true;
 
 connection.on("ReceiveMessage", function (user, message) {
-    alert("ss");
-    var li = document.createElement("li");
-    document.getElementById("messagesList").appendChild(li);
     // We can assign user-supplied strings to an element's textContent because it
-    // is not interpreted as markup. If you're assigning in any other way, you 
+    // is not interpreted as markup. If you're assigning in any other way, you
     // should be aware of possible script injection concerns.
-    li.textContent = `${user} says ${message}`;
-
+    const messagesMainContainer = document.getElementsByClassName('msger-chat')[0];
     const div = document.createElement('div');
-    div.className = "msg right-msg"
+    let userName = document.getElementById("userName").value;
+    let className = userName == user ? "msg right-msg" : "msg left-msg";
+
+    div.className = className;//"msg right-msg"
     div.innerHTML = `
     <div class="msg-bubble">
         <div class="msg-info">
@@ -32,6 +31,7 @@ connection.on("ReceiveMessage", function (user, message) {
 
     const messagesContainer = document.getElementById('box-chat');
     messagesContainer.appendChild(div);
+    messagesMainContainer.scrollTop += 500;
 });
 
 connection.start().then(function () {
@@ -41,7 +41,7 @@ connection.start().then(function () {
 });
 
 document.getElementById("sendButton").addEventListener("click", function (event) {
-    var user = document.getElementById("userInput").value;
+    var user = document.getElementById("userName").value;
     var message = document.getElementById("messageInput").value;
 
     connection.invoke("SendMessage", user, message).catch(function (err) {
@@ -55,41 +55,20 @@ document.getElementById("sendButton").addEventListener("click", function (event)
 
 var postMessageAjax = () => {
     const formData = new FormData(form);
-    console.log(form);
+    const botMessage = document.getElementById("bot-message");
+
     fetch('/Home/AddMessage', {
         method: 'POST',
         body: formData
     })
     .then(response => response.json())
     .then(data => {
-        // Handle the response if needed
+        botMessage.innerHTML = data?.BotMessage;
     })
     .catch(error => {
-        // Handle the error if needed
-        conole.log(error);
+        console.log(error);
     });
 }
-
-
-//var sendMessageAjax = () => {
-    //sendButton.addEventListener('click', function (event) {
-    //    event.preventDefault();
-    //    alert("si");
-    //    const formData = new FormData(form);
-    //    console.log(form);
-    //    fetch('/Home/AddMessage', {
-    //        method: 'POST',
-    //        body: formData
-    //    })
-    //    .then(response => response.json())
-    //    .then(data => {
-    //        // Handle the response if needed
-    //    })
-    //    .catch(error => {
-    //        // Handle the error if needed
-    //    });
-    //});
-//}
 
 var dateTimeNow = () => {
     let date = new Date();

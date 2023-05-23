@@ -22,6 +22,7 @@ namespace ChatRoomApp.Data
                 entity.HasOne<User>(m => m.Receiver)
                 .WithMany(u => u.MessagesReceiver)
                 .HasForeignKey(m => m.ReceiverId)
+                .IsRequired(false)
                 .OnDelete(DeleteBehavior.Restrict);
             });
             //modelBuilder.Entity<Message>()

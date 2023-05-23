@@ -1,40 +1,25 @@
 ﻿@model ChatRoomApp.Models.ViewModels.ChatRoomViewModel
 
 @{
-    ViewData["Title"] = "Home Page";
-    string userLogIn = "6ab044b6-5816-4bc3-8320-76146ae8b638";
-    string userName = "";
+    ViewData["Title"] = "ChatRoom";
+    string userLogIn = @Model.UserId;
+    string userName = @Model.UserName;
 }
 
 <section class="msger">
     <header class="msger-header">
         <div class="msger-header-title">
-            <i class="fas fa-comment-alt"></i> ChatRoom
+            <i class="fas fa-comment-alt"></i> User Name: @userName
+            <input type="hidden" id="userIdLogin" value="@userLogIn" />
         </div>
         <div class="msger-header-options">
             <span><i class="fas fa-cog"></i></span>
         </div>
     </header>
     <main class="msger-chat">
-        <div class="user-list">
-            <ul>
-            @foreach (var item in Model.Users)
-            {
-                    if (item.Id != userLogIn)
-                    {
-                        <li>@item.UserName</li>
-                    }
-            }
-            </ul>
-        </div>
         <div id="box-chat">
         @foreach (var item in Model.Messages)
         {
-                if (item.UserId == userLogIn)
-                {
-                    userName = item.Sender.UserName;
-                }
-                
                 <div class="@(item.UserId == userLogIn? "msg right-msg" : "msg left-msg")">
                     <div class="msg-bubble">
                         <div class="msg-info">
@@ -46,19 +31,6 @@
                         </div>
                     </div>
                 </div>
-
-@*                <div class="msg right-msg">
-                    <div class="msg-bubble">
-                        <div class="msg-info">
-                            <div class="msg-info-name">Maria</div>
-                            <div class="msg-info-time">19:00</div>
-                        </div>
-
-                        <div class="msg-text">
-                            Nice to meet you!
-                        </div>
-                    </div>
-                </div>*@
         }
         </div>
     </main>
@@ -66,42 +38,14 @@
     <form id="chatFrm" class="msger-inputarea">
         <input type="text" id="messageInput" name="Content" class="msger-input" placeholder="Enter your message...">
         <input type="hidden" id="userInput" name="UserId" value="@userLogIn" />
-        <input type="hidden" name="ReceiverId" value="31aa20b0-3901-4561-9596-6d54a79b4cab" />
-        <button id="sendBtn" class="msger-send-btn">Send Message</button>
-        <button type="button" id="sendButton">Send Message</button>
+@*        <input type="hidden" name="ReceiverId" value="" />*@
+        <button type="button" id="sendButton" class="msger-send-btn">Send Message</button>
     </form>
-    <input type="hidden" name="UserName" value="@userLogIn" />
+    <input type="hidden" id="userName"  name="UserName" value="@userName" />
+</section>
+<section class="bot-section">
+    <p id="bot-message"></p>
 </section>
 
-
-<div class="container">
-    <div class="row p-1">
-        <div class="col-1">User</div>
-        @*<div class="col-5"><input type="text" id="userInput" /></div>*@
-    </div>
-    <div class="row p-1">
-        <div class="col-1">Message</div>
-        @*<div class="col-5"><input type="text" class="w-100" id="messageInput" /></div>*@
-    </div>
-    <div class="row p-1">
-        <div class="col-6 text-end">
-            @*<input type="button" id="sendButton" value="Send Message" />*@
-            @*<button type="button" id="sendButton">Send Message</button>*@
-        </div>
-    </div>
-    <div class="row p-1">
-        <div class="col-6">
-            <hr />
-        </div>
-    </div>
-    <div class="row p-1">
-        <div class="col-6">
-            <div id="messagesList"></div>
-        </div>
-    </div>
-    <div id="messagesContainer">
-
-    </div>
-</div>
 <script src="~/js/signalr/dist/browser/signalr.js"></script>
 <script src="~/js/chat.js"></script>

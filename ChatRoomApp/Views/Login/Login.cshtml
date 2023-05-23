@@ -1,0 +1,34 @@
+﻿@model ChatRoomApp.Helpers.Dtos.LoginPost
+
+@{
+    ViewData["Title"] = "Login";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center align-content-center">
+        <div class="col-sm-12 col-md-12 col-lg-4">
+            <h1 class="mb-3">Login</h1>
+            <form method="post" action="/Login/Login" name="LoginPost">
+                <span class="text-danger">
+                    @Html.ValidationSummary()
+                </span>
+                <div class="mb-3">
+                    <label class="form-label" for="UserName">User Name</label>
+                    <input type="text" name="UserName" class="form-control" value="@Model?.UserName" />
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="Password">Password</label>
+                    <input type="password" name="Password" class="form-control" value="@Model?.Password" />
+                </div>
+                 <div class="mb-3">
+                    <input type="checkbox" name="RememberMe" class="form-check-input" value="@Model?.RememberMe" />
+                    <label class="form form-check-label" for="RememberMe">Remember me</label>
+                </div>
+                <div class="mb-3">
+                    <button type="submit" class="btn btn-primary">Login</button>
+                </div>
+                <a href="/Login/Register">Register</a>
+            </form>
+        </div>
+    </div>
+</div>
