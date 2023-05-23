@@ -21,10 +21,19 @@ namespace ChatRoomApp.Helpers
 
         public async Task<List<Message>> MessageListAsync()
         {
-            var messages = await _dbcontext.Messages
-                .OrderBy(m => m.CreatedDate)
+            var messages = new List<Message>();
+
+            var lastMessages = await _dbcontext.Messages
+                .OrderByDescending(m => m.CreatedDate)
                 .Take(50)
-                .ToListAsync();
+                .ToListAsync() ?? new List<Message>();
+
+            if (lastMessages.Any())
+            {
+                messages = lastMessages
+               .OrderBy(m => m.CreatedDate)
+               .ToList();
+            }
 
             return messages;
         }
