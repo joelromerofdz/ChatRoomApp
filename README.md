@@ -67,6 +67,6 @@ The second tab has to be an incognito mode window in order to log in with anothe
 <img width="951" alt="Step7" src="https://github.com/joelromerofdz/ChatRoomApp/assets/28847733/757084e9-dba1-407c-8444-9afaa6d7d0b8">
 
 # Testing the bot:
-# "Note:" that stock message and response are not inserted in the DataBase.
+# Note: This stock message and response are not inserted in the DataBase.
 <img width="920" alt="Step8" src="https://github.com/joelromerofdz/ChatRoomApp/assets/28847733/6bc8400d-2d10-4b1a-8911-700180a6b9eb">
 
