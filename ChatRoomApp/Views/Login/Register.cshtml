@@ -1,0 +1,34 @@
+﻿@model ChatRoomApp.Models.ViewModels.RegisterViewModel
+
+@{
+    ViewData["Title"] = "Register";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center align-content-center">
+        <div class="col-sm-12 col-md-12 col-lg-4">
+             <h1 class="mb-3">Register</h1>
+            <form method="post" action="/Login/AddUser" name="RegisterViewModel">
+                <span class="text-danger">
+                    @Html.ValidationSummary()
+                </span>
+                <div class="mb-3">
+                    <label class="form-label" for="UserName">User Name</label>
+                    <input type="text" name="UserName" class="form-control" value="@Model?.UserName"/>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="Password">Password</label>
+                    <input type="password" name="Password" class="form-control" value="@Model?.Password" />
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="ComfirmPassword">Confirm Password</label>
+                    <input type="password" name="ComfirmPassword" class="form-control" value="@Model?.ComfirmPassword" />
+                </div>
+                <div class="mb-3">
+                    <button type="submit" class="btn btn-primary">Register</button>
+                </div>
+                <a href="/Login/Login">Back to Log In</a>
+            </form>
+        </div>
+    </div>
+</div>

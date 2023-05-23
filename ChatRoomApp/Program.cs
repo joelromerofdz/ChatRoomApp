@@ -4,6 +4,7 @@ using ChatRoomApp.Helpers;
 using ChatRoomApp.Models.Entities;
 using Microsoft.EntityFrameworkCore;
 using ChatRoomApp.Hubs;
+using ChatRoomApp.API.External;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,10 +17,16 @@ builder.Services.AddDbContext<AppDbContext>(option =>
 builder.Services.AddDefaultIdentity<User>()
     .AddEntityFrameworkStores<AppDbContext>();
 
+builder.Services.AddTransient<HttpClient>();
 builder.Services.AddScoped<IUserHelper, UserHelper>();
 builder.Services.AddScoped<IMessageHelper, MessageHelper>();
-
+builder.Services.AddScoped<ChatBotStock>();
 builder.Services.AddSignalR();
+
+builder.Services.ConfigureApplicationCookie(config =>
+{
+    config.LoginPath = "/Login";
+});
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -35,12 +42,15 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
+//app.MapControllerRoute(
+//    name: "default",
+//    pattern: "{controller=Login}/{action=Index}/{id?}");
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
-
+    pattern: "{controller=Login}/{action=Login}/{id?}");
 app.MapHub<ChatHub>("/chatHub");
 
 app.Run();

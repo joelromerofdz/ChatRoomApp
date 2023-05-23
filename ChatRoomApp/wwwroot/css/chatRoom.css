@@ -183,8 +183,13 @@
 
 #box-chat {
     float: right;
-    width: 80%;
-    height: 100%;
-    overflow-y: scroll;
+    width: 97%;
+    /*height: 98%;*/
+    /*overflow-y: scroll; */
     background-color: #444654;
+}
+
+#bot-message {
+    font-weight: 600;
+    color: #084298;
 }
