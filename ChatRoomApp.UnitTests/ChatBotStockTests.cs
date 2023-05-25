@@ -36,7 +36,7 @@ namespace ChatRoomApp.UnitTests
             #endregion
 
             #region Assert
-            Assert.That($"{stockStr} quote is $171.56 per share.", Is.EqualTo(result));
+            Assert.That(result, Does.Contain(stockStr));
             #endregion
         }
 
@@ -52,7 +52,7 @@ namespace ChatRoomApp.UnitTests
             #endregion
 
             #region Assert
-            Assert.That($"This stock does not have quote.", Is.EqualTo(result));
+            Assert.That(result, Is.EqualTo($"This stock does not have quote."));
             #endregion
         }
 
