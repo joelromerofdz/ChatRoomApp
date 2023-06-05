@@ -1,8 +1,6 @@
-﻿using ChatRoomApp.API.External.Entities;
-using Newtonsoft.Json;
-using System.Reflection;
+﻿using ChatBot.Entities;
 
-namespace ChatRoomApp.API.External
+namespace ChatBot
 {
     public class ChatBotStock
     {
@@ -23,7 +21,7 @@ namespace ChatRoomApp.API.External
                 string responseContent = await response.Content.ReadAsStringAsync();
                 bool hasValueQuote = false;
                 string result = "";
-                Stock ? stock = new Stock();
+                Stock? stock = new Stock();
 
                 if (!responseContent.Contains("Ticker missing"))
                 {

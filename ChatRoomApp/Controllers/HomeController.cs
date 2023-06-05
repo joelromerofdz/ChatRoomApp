@@ -1,4 +1,4 @@
-﻿using ChatRoomApp.API.External;
+﻿using ChatBot;
 using ChatRoomApp.Controllers.Base;
 using ChatRoomApp.Helpers.Dtos;
 using ChatRoomApp.Helpers.Interfaces;

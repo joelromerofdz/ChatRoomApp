@@ -1,15 +1,5 @@
-﻿using ChatRoomApp.API.External;
-using ChatRoomApp.Data;
-using ChatRoomApp.Helpers;
-using ChatRoomApp.Helpers.Interfaces;
-using ChatRoomApp.Models.Entities;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.SignalR;
-using Microsoft.EntityFrameworkCore;
+﻿using ChatBot;
 using Moq;
-using NUnit.Framework;
-using System.Collections.Generic;
-using System.Net.Http;
 
 namespace ChatRoomApp.UnitTests
 {
