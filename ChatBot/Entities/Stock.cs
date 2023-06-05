@@ -1,6 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
-
-namespace ChatRoomApp.API.External.Entities
+﻿namespace ChatBot.Entities
 {
     public class Stock
     {

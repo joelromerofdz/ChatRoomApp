@@ -1,10 +1,10 @@
 using ChatRoomApp.Data;
-using ChatRoomApp.Helpers.Interfaces;
 using ChatRoomApp.Helpers;
+using ChatRoomApp.Helpers.Interfaces;
+using ChatRoomApp.Hubs;
 using ChatRoomApp.Models.Entities;
 using Microsoft.EntityFrameworkCore;
-using ChatRoomApp.Hubs;
-using ChatRoomApp.API.External;
+using ChatBot;
 
 var builder = WebApplication.CreateBuilder(args);
 
