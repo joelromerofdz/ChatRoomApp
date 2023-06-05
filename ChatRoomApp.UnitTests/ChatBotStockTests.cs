@@ -1,4 +1,5 @@
 ﻿using ChatBot;
+using Microsoft.Extensions.Configuration;
 using Moq;
 
 namespace ChatRoomApp.UnitTests
@@ -8,10 +9,14 @@ namespace ChatRoomApp.UnitTests
     {
         private readonly ChatBotStock _sut;
         private readonly Mock<HttpClient> _httpClient = new Mock<HttpClient>();
-
+        private readonly Mock<IConfiguration> _configuration = new Mock<IConfiguration>();
         public ChatBotStockTests()
         {
-            _sut = new ChatBotStock(_httpClient.Object);
+            _configuration
+                .Setup(cong => cong.GetSection("ChatBotSettings:Url").Value)
+                .Returns("https://stooq.com/q/l/");
+
+            _sut = new ChatBotStock(_httpClient.Object, _configuration.Object);
         }
 
         [Test]

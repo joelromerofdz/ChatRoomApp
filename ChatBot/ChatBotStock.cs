@@ -1,20 +1,26 @@
 ﻿using ChatBot.Entities;
+using Microsoft.Extensions.Configuration;
 
 namespace ChatBot
 {
     public class ChatBotStock
     {
         private readonly HttpClient _httpClient;
+        private readonly string _chatBotUrl;
+        private readonly IConfiguration _configuration;
 
-        public ChatBotStock(HttpClient httpClient)
+        public ChatBotStock(HttpClient httpClient,
+            IConfiguration configuration)
         {
             _httpClient = httpClient;
+            _configuration = configuration;
+            _chatBotUrl = _configuration.GetSection("ChatBotSettings:Url").Value;
         }
 
         public async Task<string> GetBotStock(string stockCode)
         {
             string stockStr = ReplaceStockKeyWord(stockCode);
-            var response = await _httpClient.GetAsync($"https://stooq.com/q/l/?s={stockStr}&f=sd2t2ohlcv&h&e=csv");
+            var response = await _httpClient.GetAsync($"{_chatBotUrl}?s={stockStr}&f=sd2t2ohlcv&h&e=csv");
 
             if (response.IsSuccessStatusCode)
             {
