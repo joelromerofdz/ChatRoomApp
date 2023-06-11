@@ -1,16 +1,17 @@
-﻿using ChatBot;
 using Microsoft.Extensions.Configuration;
 using Moq;
 
-namespace ChatRoomApp.UnitTests
+namespace ChatBot.UnitTests
 {
     [TestFixture]
     public class ChatBotStockTests
     {
-        private readonly ChatBotStock _sut;
-        private readonly Mock<HttpClient> _httpClient = new Mock<HttpClient>();
-        private readonly Mock<IConfiguration> _configuration = new Mock<IConfiguration>();
-        public ChatBotStockTests()
+        private ChatBotStock _sut;
+        private Mock<HttpClient> _httpClient = new Mock<HttpClient>();
+        private Mock<IConfiguration> _configuration = new Mock<IConfiguration>();
+
+        [SetUp]
+        public void Setup()
         {
             _configuration
                 .Setup(cong => cong.GetSection("ChatBotSettings:Url").Value)

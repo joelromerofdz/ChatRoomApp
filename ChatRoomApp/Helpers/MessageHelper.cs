@@ -19,25 +19,6 @@ namespace ChatRoomApp.Helpers
             _userHelper = userHelper;
         }
 
-        public async Task<List<Message>> MessageListAsync()
-        {
-            var messages = new List<Message>();
-
-            var lastMessages = await _dbcontext.Messages
-                .OrderByDescending(m => m.CreatedDate)
-                .Take(50)
-                .ToListAsync() ?? new List<Message>();
-
-            if (lastMessages.Any())
-            {
-                messages = lastMessages
-               .OrderBy(m => m.CreatedDate)
-               .ToList();
-            }
-
-            return messages;
-        }
-
         public async Task<ChatRoomViewModel> ChatRoomData()
         {
             var messages = await MessageListAsync();
@@ -73,5 +54,25 @@ namespace ChatRoomApp.Helpers
                 throw new Exception(ex.Message);
             }
         }
+
+        private async Task<List<Message>> MessageListAsync()
+        {
+            var messages = new List<Message>();
+
+            var lastMessages = await _dbcontext.Messages
+                .OrderByDescending(m => m.CreatedDate)
+                .Take(50)
+                .ToListAsync() ?? new List<Message>();
+
+            if (lastMessages.Any())
+            {
+                messages = lastMessages
+               .OrderBy(m => m.CreatedDate)
+               .ToList();
+            }
+
+            return messages;
+        }
+
     }
 }
