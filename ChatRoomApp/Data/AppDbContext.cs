@@ -6,6 +6,10 @@ namespace ChatRoomApp.Data
 {
     public class AppDbContext : IdentityDbContext<User>
     {
+        public AppDbContext()
+        {
+        }
+
         public AppDbContext(DbContextOptions options) : base(options)
         {
         }
@@ -28,6 +32,6 @@ namespace ChatRoomApp.Data
             });
         }
 
-        public DbSet<Message> Messages { get; set; }
+        public virtual DbSet<Message> Messages { get; set; }
     }
 }
