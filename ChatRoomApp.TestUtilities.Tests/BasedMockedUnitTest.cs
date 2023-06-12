@@ -1,9 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Query;
 using Moq;
-using System.Data.Entity.Infrastructure;
-using System.Linq.Expressions;
-using System.Reflection.Metadata;
 
 namespace ChatRoomApp.TestUtilities.Tests
 {
