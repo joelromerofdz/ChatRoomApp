@@ -39,12 +39,7 @@ namespace ChatRoomApp.Helpers
         {
             try
             {
-                var message = new Message()
-                {
-                    UserId = messagePost.UserId,
-                    //ReceiverId = messagePost.ReceiverId,
-                    Content = messagePost.Content
-                };
+                var message = MapMessagePostToMessage(messagePost);
 
                 await _dbcontext.AddAsync(message);
                 await _dbcontext.SaveChangesAsync();
@@ -72,6 +67,24 @@ namespace ChatRoomApp.Helpers
             }
 
             return messages;
+        }
+
+        private Message MapMessagePostToMessage(MessagePost messagePost)
+        {
+            if (string.IsNullOrWhiteSpace(messagePost.UserId) || 
+                string.IsNullOrWhiteSpace(messagePost.Content))
+            {
+                throw new Exception("User Id and Content cannot be empty.");
+            }
+
+            var message = new Message()
+            {
+                UserId = messagePost.UserId,
+                //ReceiverId = messagePost.ReceiverId,
+                Content = messagePost.Content
+            };
+
+            return message;
         }
 
     }
