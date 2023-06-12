@@ -20,6 +20,13 @@ namespace ChatBot.UnitTests
             _sut = new ChatBotStock(_httpClient.Object, _configuration.Object);
         }
 
+        [TearDown]
+        public void TearDown()
+        {
+            _httpClient.Reset();
+            _configuration.Reset();
+        }
+
         [Test]
         public async Task GetBotStock_WhenPassAnExistingStockCode_ReturnStockCodeInformation()
         {

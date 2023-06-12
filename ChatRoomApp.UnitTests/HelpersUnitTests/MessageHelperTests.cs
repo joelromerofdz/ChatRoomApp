@@ -1,5 +1,6 @@
 ﻿using ChatRoomApp.Data;
 using ChatRoomApp.Helpers;
+using ChatRoomApp.Helpers.Dtos;
 using ChatRoomApp.Helpers.Interfaces;
 using ChatRoomApp.Models.Entities;
 using ChatRoomApp.Models.ViewModels;
@@ -22,6 +23,13 @@ namespace ChatRoomApp.UnitTests.HelpersUnitTests
         public void SetUp()
         {
             _sut = new MessageHelper(_dbcontext.Object, _userHelper.Object);
+        }
+
+        [TearDown]
+        public void TearDown()
+        {
+            _dbcontext.Reset();
+            _userHelper.Reset();
         }
 
         [Test]
@@ -65,8 +73,8 @@ namespace ChatRoomApp.UnitTests.HelpersUnitTests
             Assert.That(result.Messages.Count, Is.EqualTo(50));
             Assert.That(result.Messages, Is.EquivalentTo(expected.Messages));
             Assert.That(result.Users, Is.EquivalentTo(expected.Users));
-            Assert.That(result.UserName, Is.EqualTo(result.UserName));
-            Assert.That(result.UserId, Is.EqualTo(result.UserId));
+            Assert.That(result.UserName, Is.EqualTo(expected.UserName));
+            Assert.That(result.UserId, Is.EqualTo(expected.UserId));
             #endregion
         }
 
@@ -111,6 +119,53 @@ namespace ChatRoomApp.UnitTests.HelpersUnitTests
             Assert.That(result.Users.Count, Is.EqualTo(2));
             Assert.That(result.UserName, Is.EqualTo(result.UserName));
             Assert.That(result.UserId, Is.EqualTo(result.UserId));
+            #endregion
+        }
+
+        [Test]
+        public async Task AddMessage_WhenPassTheMessageValue_SaveTheMessageValueInDataBase()
+        {
+            #region Arragen
+            var message = new MessagePost()
+            {
+                UserId = Guid.NewGuid().ToString(),
+                Content = "Hi!"
+            };
+
+            _dbcontext.Setup(m => m.SaveChangesAsync(It.IsAny<CancellationToken>()))
+                .Returns(Task.FromResult(0));
+            #endregion
+
+            #region Act
+            await _sut.AddMessage(message);
+            #endregion
+
+            #region Assert
+            _dbcontext.Verify(m => m.SaveChangesAsync(It.IsAny<CancellationToken>()), Times.Once);
+            #endregion
+        }
+
+        [Test]
+        public void AddMessage_WhenFailed_ThrowsException()
+        {
+            #region Arragen
+            var message = new MessagePost();
+
+            var expected = "User Id and Content cannot be empty.";
+
+            _dbcontext.Setup(m => m.AddAsync(It.IsAny<Message>(), default(CancellationToken)))
+                .ThrowsAsync(new Exception(expected));
+
+            _dbcontext.Setup(m => m.SaveChangesAsync(default(CancellationToken)))
+                .ThrowsAsync(new Exception(expected));
+            #endregion
+
+            #region Act
+            var exception = Assert.ThrowsAsync<Exception>(async () => await _sut.AddMessage(message));
+            #endregion
+
+            #region Assert
+            Assert.That(exception.Message, Is.EqualTo(expected));
             #endregion
         }
 
