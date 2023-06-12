@@ -5,10 +5,7 @@ using ChatRoomApp.Helpers.Interfaces;
 using ChatRoomApp.Models.Entities;
 using ChatRoomApp.Models.ViewModels;
 using ChatRoomApp.TestUtilities.Tests;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Moq;
-using NUnit.Framework;
 
 namespace ChatRoomApp.UnitTests.HelpersUnitTests
 {
@@ -39,7 +36,7 @@ namespace ChatRoomApp.UnitTests.HelpersUnitTests
             var users = GetFakeUsers(2);
             var messages = GetFakeMessages(50, users[0].Id, users[1].Id);
             var mockDbSet = CreateMockDbSet<Message>(messages.AsQueryable());
-            
+
             var userInfo = new UserInfo()
             {
                 UserId = users[1].Id,
@@ -172,7 +169,7 @@ namespace ChatRoomApp.UnitTests.HelpersUnitTests
         private List<Message> GetFakeMessages(int total, string user1, string user2)
         {
             var messages = new List<Message>();
-           
+
             for (int i = 1; i <= total; i++)
             {
                 var message = new Message()
