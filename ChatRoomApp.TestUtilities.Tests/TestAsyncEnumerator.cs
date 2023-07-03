@@ -33,7 +33,7 @@ namespace ChatRoomApp.TestUtilities.Tests
     {
         private readonly IQueryProvider inner;
 
-        internal TestAsyncQueryProvider(IQueryProvider inner)
+        public TestAsyncQueryProvider(IQueryProvider inner)
         {
             this.inner = inner;
         }

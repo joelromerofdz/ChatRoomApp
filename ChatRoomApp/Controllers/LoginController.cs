@@ -27,7 +27,7 @@ namespace ChatRoomApp.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> LogIn(LoginPost login)
+        public async Task<IActionResult> LogIn(LoginRequest login)
         {
             if (ModelState.IsValid)
             {

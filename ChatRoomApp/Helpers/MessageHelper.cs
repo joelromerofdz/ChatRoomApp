@@ -35,7 +35,7 @@ namespace ChatRoomApp.Helpers
             return chatRoomViewModel;
         }
 
-        public async Task AddMessage(MessagePost messagePost)
+        public async Task AddMessage(MessageRequest messagePost)
         {
             try
             {
@@ -69,7 +69,7 @@ namespace ChatRoomApp.Helpers
             return messages;
         }
 
-        private Message MapMessagePostToMessage(MessagePost messagePost)
+        private Message MapMessagePostToMessage(MessageRequest messagePost)
         {
             if (string.IsNullOrWhiteSpace(messagePost.UserId) || 
                 string.IsNullOrWhiteSpace(messagePost.Content))

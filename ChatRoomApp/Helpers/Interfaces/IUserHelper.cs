@@ -8,9 +8,9 @@ namespace ChatRoomApp.Helpers.Interfaces
     public interface IUserHelper
     {
         Task<List<User>> UserListAsync();
-        UserInfo GetUserId();
+        UserInfoResponse GetUserId();
         Task<IdentityResult> AddUserSync(RegisterViewModel register);
-        Task<SignInResult> LogInUser(LoginPost login, bool lockoutOnFailure);
+        Task<SignInResult> LogInUser(LoginRequest login, bool lockoutOnFailure);
         bool IsUserAuthenticated();
         Task LogOut();
     }

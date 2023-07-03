@@ -2,7 +2,7 @@
 
 namespace ChatRoomApp.Helpers.Dtos
 {
-    public class MessagePost
+    public class MessageRequest
     {
         [Required(ErrorMessage = "Text message is required")]
         public string Content { get; set; }
