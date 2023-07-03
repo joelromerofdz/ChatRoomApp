@@ -2,7 +2,7 @@
 
 namespace ChatRoomApp.Helpers.Dtos
 {
-    public class LoginPost
+    public class LoginRequest
     {
         [Required(ErrorMessage = "User Name cannot be empty.")]
         public string UserName { get; set; }

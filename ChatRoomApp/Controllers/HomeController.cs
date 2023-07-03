@@ -36,7 +36,7 @@ namespace ChatRoomApp.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddMessage(MessagePost messagePost)
+        public async Task<IActionResult> AddMessage(MessageRequest messagePost)
         {
             if (!ModelState.IsValid)
             {

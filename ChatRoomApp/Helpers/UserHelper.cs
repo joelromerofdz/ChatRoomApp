@@ -37,9 +37,9 @@ namespace ChatRoomApp.Helpers
             return users;
         }
 
-        public UserInfo GetUserId()
+        public UserInfoResponse GetUserId()
         {
-            var userInfo = new UserInfo()
+            var userInfo = new UserInfoResponse()
             {
                 UserId = _userManager.GetUserId(_userLogIn),
                 UserName = _userLogIn.Identity.Name
@@ -64,7 +64,7 @@ namespace ChatRoomApp.Helpers
             return result;
         }
 
-        public async Task<SignInResult> LogInUser(LoginPost login, bool lockoutOnFailure)
+        public async Task<SignInResult> LogInUser(LoginRequest login, bool lockoutOnFailure)
         {
             var signInResult = await _signInManager.PasswordSignInAsync(login.UserName, login.Password, login.RememberMe, lockoutOnFailure);
             return signInResult;
@@ -80,12 +80,5 @@ namespace ChatRoomApp.Helpers
         {
             await _signInManager.SignOutAsync();
         }
-    }
-
-    public class UserInfo
-    {
-        public string UserId { get; set; }
-        public string UserName { get; set;}
-
     }
 }

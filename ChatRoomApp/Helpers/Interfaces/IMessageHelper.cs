@@ -7,6 +7,6 @@ namespace ChatRoomApp.Helpers.Interfaces
     public interface IMessageHelper
     {
         Task<ChatRoomViewModel> ChatRoomData();
-        Task AddMessage(MessagePost messagePost);
+        Task AddMessage(MessageRequest messagePost);
     }
 }

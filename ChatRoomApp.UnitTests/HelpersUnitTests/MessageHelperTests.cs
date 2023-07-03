@@ -37,7 +37,7 @@ namespace ChatRoomApp.UnitTests.HelpersUnitTests
             var messages = GetFakeMessages(50, users[0].Id, users[1].Id);
             var mockDbSet = CreateMockDbSet<Message>(messages.AsQueryable());
 
-            var userInfo = new UserInfo()
+            var userInfo = new UserInfoResponse()
             {
                 UserId = users[1].Id,
                 UserName = users[1].UserName
@@ -83,7 +83,7 @@ namespace ChatRoomApp.UnitTests.HelpersUnitTests
             var messages = new List<Message>();
             var mockDbSet = CreateMockDbSet<Message>(messages.AsQueryable());
 
-            var userInfo = new UserInfo()
+            var userInfo = new UserInfoResponse()
             {
                 UserId = users[1].Id,
                 UserName = users[1].UserName
@@ -123,7 +123,7 @@ namespace ChatRoomApp.UnitTests.HelpersUnitTests
         public async Task AddMessage_WhenPassTheMessageValue_SaveTheMessageValueInDataBase()
         {
             #region Arragen
-            var message = new MessagePost()
+            var message = new MessageRequest()
             {
                 UserId = Guid.NewGuid().ToString(),
                 Content = "Hi!"
@@ -146,7 +146,7 @@ namespace ChatRoomApp.UnitTests.HelpersUnitTests
         public void AddMessage_WhenFailed_ThrowsException()
         {
             #region Arragen
-            var message = new MessagePost();
+            var message = new MessageRequest();
 
             var expected = "User Id and Content cannot be empty.";
 
