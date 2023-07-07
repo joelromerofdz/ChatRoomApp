@@ -8,17 +8,17 @@ namespace ChatRoomApp.Controllers
 {
     public class LoginController : BaseChatRoomController
     {
-        public readonly IUserHelper _userHelper;
+        private readonly IChatRoomAppRepository _repository;
 
-        public LoginController(IUserHelper userHelper)
+        public LoginController(IChatRoomAppRepository repository)
         {
-            _userHelper = userHelper;
+            _repository = repository;
         }
 
         [HttpGet]
         public ActionResult Login()
         {
-            if (_userHelper.IsUserAuthenticated())
+            if (_repository.UserHelper.IsUserAuthenticated())
             {
                 return RedirectToAction("Index", "Home");
             }
@@ -31,7 +31,7 @@ namespace ChatRoomApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                var singInResult = await _userHelper.LogInUser(login, false);
+                var singInResult = await _repository.UserHelper.LogInUser(login, false);
                 if (singInResult.Succeeded)
                 {
                     return RedirectToAction("Index", "Home");
@@ -45,7 +45,7 @@ namespace ChatRoomApp.Controllers
 
         public ActionResult Register()
         {
-            if (_userHelper.IsUserAuthenticated())
+            if (_repository.UserHelper.IsUserAuthenticated())
             {
                 return RedirectToAction("Index", "Home");
             }
@@ -63,7 +63,7 @@ namespace ChatRoomApp.Controllers
                     return View("Register", register);
                 }
 
-                var r = await _userHelper.AddUserSync(register);
+                var r = await _repository.UserHelper.AddUserSync(register);
                 if (r.Succeeded)
                 {
                     return RedirectToAction("Index", "Home");
@@ -81,7 +81,7 @@ namespace ChatRoomApp.Controllers
         [HttpGet]
         public async Task<IActionResult> LogOut()
         {
-            await _userHelper.LogOut();
+            await _repository.UserHelper.LogOut();
             return RedirectToAction("Login", "Login");
         }
 

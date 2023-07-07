@@ -13,25 +13,22 @@ namespace ChatRoomApp.Controllers
     [Authorize]
     public class HomeController : BaseChatRoomController
     {
-        public readonly IUserHelper _userHelper;
-        public readonly IMessageHelper _messageHelper;
+        private readonly IChatRoomAppRepository _repository;
         private readonly ChatBotStock _chatBotStock;
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger,
-            IUserHelper userHelper,
-            IMessageHelper messageHelper,
+        public HomeController(IChatRoomAppRepository repository,
+            ILogger<HomeController> logger,
             ChatBotStock chatBotStock)
         {
-            _userHelper = userHelper;
-            _messageHelper = messageHelper;
+            _repository = repository;
             _logger = logger;
             _chatBotStock = chatBotStock;
         }
 
         public async Task<IActionResult> Index()
         {
-            var chatRoom = await _messageHelper.ChatRoomData();
+            var chatRoom = await _repository.MessageHelper.ChatRoomData();
             return View(chatRoom);
         }
 
@@ -50,7 +47,7 @@ namespace ChatRoomApp.Controllers
                 return Ok(JsonConvert.SerializeObject(new { BotMessage = botMessage }));
             }
 
-            await _messageHelper.AddMessage(messagePost);
+            await _repository.MessageHelper.AddMessage(messagePost);
             return Ok(JsonConvert.SerializeObject(new { BotMessage = "" }));
         }
 

@@ -19,7 +19,7 @@ builder.Services.AddDefaultIdentity<User>()
 
 builder.Services.AddTransient<HttpClient>();
 builder.Services.AddScoped<IUserHelper, UserHelper>();
-builder.Services.AddScoped<IMessageHelper, MessageHelper>();
+builder.Services.AddScoped<IChatRoomAppRepository, ChatRoomAppRepository>();
 builder.Services.AddScoped<ChatBotStock>();
 builder.Services.AddSignalR();
 
@@ -45,9 +45,6 @@ app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 
-//app.MapControllerRoute(
-//    name: "default",
-//    pattern: "{controller=Login}/{action=Index}/{id?}");
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Login}/{action=Login}/{id?}");
