@@ -10,7 +10,6 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Moq;
 using System.Security.Claims;
-using System.Security.Principal;
 
 namespace ChatRoomApp.UnitTests.HelpersUnitTests
 {

@@ -9,11 +9,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChatRoomApp.UnitTests", "Ch
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChatBot", "ChatBot\ChatBot.csproj", "{CCB07E82-6CEF-4292-A6AE-7D6F96523728}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChatBot.UnitTests", "ChatBot.UnitTests\ChatBot.UnitTests.csproj", "{64D46319-80D9-4A25-AFA8-80221D3C4547}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChatBot.UnitTests", "ChatBot.UnitTests\ChatBot.UnitTests.csproj", "{64D46319-80D9-4A25-AFA8-80221D3C4547}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UnitTests", "UnitTests", "{53B1A3E8-02C5-4708-AA23-0AD0258FBD59}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChatRoomApp.TestUtilities.Tests", "ChatRoomApp.TestUtilities.Tests\ChatRoomApp.TestUtilities.Tests.csproj", "{A6CD4A26-70FD-437D-8221-328C5009F841}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChatRoomApp.TestUtilities.Tests", "ChatRoomApp.TestUtilities.Tests\ChatRoomApp.TestUtilities.Tests.csproj", "{A6CD4A26-70FD-437D-8221-328C5009F841}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChatRoomApp.IntegrationTests", "ChatRoomApp.IntegrationTests\ChatRoomApp.IntegrationTests.csproj", "{0A7C6EA7-E2E1-45D5-817E-2DBD23909008}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChatRoomApp.TestUtilities.IntegrationTests", "ChatRoomApp.TestUtilities.IntegrationTests\ChatRoomApp.TestUtilities.IntegrationTests.csproj", "{2637632E-CC05-425C-B99F-A752F283B5BE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,6 +45,14 @@ Global
 		{A6CD4A26-70FD-437D-8221-328C5009F841}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A6CD4A26-70FD-437D-8221-328C5009F841}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A6CD4A26-70FD-437D-8221-328C5009F841}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0A7C6EA7-E2E1-45D5-817E-2DBD23909008}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0A7C6EA7-E2E1-45D5-817E-2DBD23909008}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0A7C6EA7-E2E1-45D5-817E-2DBD23909008}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0A7C6EA7-E2E1-45D5-817E-2DBD23909008}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2637632E-CC05-425C-B99F-A752F283B5BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2637632E-CC05-425C-B99F-A752F283B5BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2637632E-CC05-425C-B99F-A752F283B5BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2637632E-CC05-425C-B99F-A752F283B5BE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -49,6 +61,8 @@ Global
 		{9EC59B3A-F76D-4EC3-BE16-2BBEDB41DDB8} = {53B1A3E8-02C5-4708-AA23-0AD0258FBD59}
 		{64D46319-80D9-4A25-AFA8-80221D3C4547} = {53B1A3E8-02C5-4708-AA23-0AD0258FBD59}
 		{A6CD4A26-70FD-437D-8221-328C5009F841} = {53B1A3E8-02C5-4708-AA23-0AD0258FBD59}
+		{0A7C6EA7-E2E1-45D5-817E-2DBD23909008} = {53B1A3E8-02C5-4708-AA23-0AD0258FBD59}
+		{2637632E-CC05-425C-B99F-A752F283B5BE} = {53B1A3E8-02C5-4708-AA23-0AD0258FBD59}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {CBD2B3BA-8FF0-4233-A1D0-161DC6B2620D}

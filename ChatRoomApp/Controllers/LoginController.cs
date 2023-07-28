@@ -54,7 +54,7 @@ namespace ChatRoomApp.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddUser(RegisterViewModel register)
+        public async Task<IActionResult> Register([FromBody] RegisterViewModel register)
         {
             try
             {

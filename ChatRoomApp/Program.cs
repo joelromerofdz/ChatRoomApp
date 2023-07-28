@@ -5,11 +5,18 @@ using ChatRoomApp.Hubs;
 using ChatRoomApp.Models.Entities;
 using Microsoft.EntityFrameworkCore;
 using ChatBot;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+    //.AddJsonOptions(options =>
+    //{
+    //    options.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
+    //    options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+    //});
 
 builder.Services.AddDbContext<AppDbContext>(option =>
     option.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnectionString")));

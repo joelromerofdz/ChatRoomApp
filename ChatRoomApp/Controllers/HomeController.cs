@@ -11,6 +11,7 @@ using System.Diagnostics;
 namespace ChatRoomApp.Controllers
 {
     [Authorize]
+    //[AllowAnonymous]
     public class HomeController : BaseChatRoomController
     {
         private readonly IChatRoomAppRepository _repository;
@@ -33,7 +34,7 @@ namespace ChatRoomApp.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddMessage(MessageRequest messagePost)
+        public async Task<IActionResult> AddMessage([FromBody] MessageRequest messagePost)
         {
             if (!ModelState.IsValid)
             {
@@ -60,6 +61,12 @@ namespace ChatRoomApp.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+        [HttpGet]
+        public string Welcome(int id)
+        {
+            return "hola mundo";
         }
     }
 }
