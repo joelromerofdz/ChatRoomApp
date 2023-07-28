@@ -27,7 +27,7 @@ messages.</br>
 &bull; Entity Framework Core</br>
 &bull; Linq</br>
 &bull; AspNetCore Identity 6.0</br>
-&bull; Nunit Test</br>
+&bull; Nunit Test (Unit Test and Integration Test)</br>
 &bull; Moq
 
 ## FrontEnd Side:
